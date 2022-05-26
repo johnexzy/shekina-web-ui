@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="main-container shadow-10" container>
+  <q-layout class="main-container shadow-10" container>
     <q-header class=" bg-white text-black">
       <q-toolbar>
         <q-btn flat round dense :icon="showMenu ? 'close' : 'menu'" class="q-mr-sm lt-md">
