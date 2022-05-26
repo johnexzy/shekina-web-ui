@@ -58,8 +58,6 @@
           <q-btn flat round dense color="blue-7" icon="fas fa-paper-plane" class="q-mx-sm" size="xs" />
           <q-btn flat round dense color="grey-9" icon="mdi-radio" size="sm" />
         </div>
-
-
       </q-toolbar>
       <q-toolbar spellcheck inset>
         <!-- <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" /> -->
@@ -74,9 +72,6 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
     <q-page-container>
       <router-view />
     </q-page-container>
