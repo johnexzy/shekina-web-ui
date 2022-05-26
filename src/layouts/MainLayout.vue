@@ -6,14 +6,14 @@
           <q-menu class="bg-black text-white" v-model="showMenu" transition-duration="500" transition-hide="jump-up"
             transition-show="jump-down">
             <q-list style="min-width: 100px">
-              <q-item clickable v-close-popup>
+              <q-item clickable v-close-popup to="/teachings">
                 <q-item-section>Teachings</q-item-section>
               </q-item>
-              <q-item clickable v-close-popup>
+              <q-item clickable v-close-popup to="/ebooks">
                 <q-item-section>Books</q-item-section>
               </q-item>
               <q-separator dark />
-              <q-item clickable v-close-popup>
+              <q-item clickable v-close-popup to="/videos">
                 <q-item-section>Videos</q-item-section>
               </q-item>
               <q-item clickable v-close-popup>
@@ -62,8 +62,7 @@
         <!-- <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" /> -->
 
         <q-toolbar-title :style="$q.screen.gt.sm ? '' : 'text-align: center;'">
-          <img src="https://www.livingwordmedia.org/wp-content/uploads/2018/09/lwm-logo-1.png"
-            title="Bringing sons to glory" />
+          <img src="~assets/logo.png" title="Bringing sons to glory" />
         </q-toolbar-title>
         <div v-for="i in 6" :key="i" class="q-pa-lg gt-sm">
           <b>Home</b>
