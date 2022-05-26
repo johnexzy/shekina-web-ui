@@ -6,6 +6,9 @@
           <q-menu class="bg-black text-white" v-model="showMenu" transition-duration="500" transition-hide="jump-up"
             transition-show="jump-down">
             <q-list style="min-width: 100px">
+              <q-item clickable v-close-popup to="/">
+                <q-item-section>Home</q-item-section>
+              </q-item>
               <q-item clickable v-close-popup to="/teachings">
                 <q-item-section>Teachings</q-item-section>
               </q-item>
