@@ -59,14 +59,26 @@
           <q-btn flat round dense color="grey-9" icon="mdi-radio" size="sm" />
         </div>
       </q-toolbar>
-      <q-toolbar spellcheck inset>
+      <q-toolbar spellcheck inset class="nav-menu">
         <!-- <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" /> -->
 
         <q-toolbar-title :style="$q.screen.gt.sm ? '' : 'text-align: center;'">
           <img src="~assets/logo.png" title="Bringing sons to glory" />
         </q-toolbar-title>
-        <div v-for="i in 6" :key="i" class="q-pa-lg gt-sm">
-          <b>Home</b>
+        <div class="q-pa-lg gt-sm">
+          <router-link to="/" class="text-decoration-none">Home</router-link>
+        </div>
+        <div class="q-pa-lg gt-sm">
+          <router-link to="/teachings" class="text-decoration-none">Teachings</router-link>
+        </div>
+        <div class="q-pa-lg gt-sm">
+          <router-link to="/videos" class="text-decoration-none">Videos</router-link>
+        </div>
+        <div class="q-pa-lg gt-sm">
+          <router-link to="/ebooks" class="text-decoration-none">Ebooks</router-link>
+        </div>
+        <div class="q-pa-lg gt-sm">
+          <router-link to="" class="text-decoration-none">Blog</router-link>
         </div>
         <!-- <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
