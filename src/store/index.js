@@ -1,10 +1,11 @@
-import { store } from 'quasar/wrappers'
-import { createStore } from 'vuex'
+import { store } from "quasar/wrappers";
+import { createStore } from "vuex";
 
-import landing from './landing'
-import blog from './blog'
-import teaching from './teaching'
-import book from './book'
+import landing from "./landing";
+import blog from "./blog";
+import teaching from "./teaching";
+import book from "./book";
+import video from "./video";
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -20,13 +21,14 @@ export default store(function (/* { ssrContext } */) {
       landing,
       blog,
       teaching,
-      book
+      book,
+      video,
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
-    strict: process.env.DEBUGGING
-  })
+    strict: process.env.DEBUGGING,
+  });
 
-  return Store
-})
+  return Store;
+});

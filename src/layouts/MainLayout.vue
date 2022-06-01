@@ -52,11 +52,8 @@
           </template>
         </q-input>
         <div class="gt-sm q-pa-md">
-          <q-btn flat round dense color="blue-10" icon="mdi-facebook" class="q-mx-sm" size="sm" />
-          <q-btn flat round dense color="blue" icon="mdi-twitter" class="q-mx-sm" size="sm" />
-          <q-btn flat round dense color="red-8" icon="mdi-youtube" class="q-mx-sm" size="sm" />
-          <q-btn flat round dense color="blue-7" icon="fas fa-paper-plane" class="q-mx-sm" size="xs" />
-          <q-btn flat round dense color="grey-9" icon="mdi-radio" size="sm" />
+          <q-btn v-for="c, i in socials" :key="i" flat :title="c.name" round dense :color="c.color" :icon="c.icon"
+            class="q-mx-sm" :size="c.size" :href="c.link" target="_blank" />
         </div>
       </q-toolbar>
       <q-toolbar spellcheck inset class="nav-menu">
@@ -98,9 +95,9 @@
             </q-card-section>
             <q-card-section class="q-pa-lg">
               <ul class="recent-news-footer">
-                <li v-for="i in 7" :key="i">
-                  <div class="fs-13 ls-06 title-text">Want to
-                    attend our Special Meetings in 2022?
+                <li v-for="n, i in featuredPosts" :key="i">
+                  <div class="fs-13 ls-06 title-text">
+                    {{ n.title }}
                   </div>
                 </li>
               </ul>
@@ -142,30 +139,45 @@
 
 import { defineComponent, ref } from "vue";
 
-export default defineComponent({
+export default {
+  preFetch({ store }) {
+    return (async () => {
+      await store.dispatch("blog/fetchFeaturedPosts")
+      await store.dispatch("blog/fetchCategories")
+      await store.dispatch("blog/fetchAnnouncement")
+    })()
+
+  },
   name: "MainLayout",
 
   components: {
 
   },
 
-  setup() {
-    const leftDrawerOpen = ref(false);
-    const showMenu = ref(false);
+  data() {
+
+
     return {
-      showMenu,
+      showMenu: false,
       socials: [
-        { name: "FaceBook", link: 'https://www.facebook.com/ShekinahAssemblyUnnCampusChurch' },
-        { name: "Telegram", link: 'https://t.me/shekinahUNNlive?livestream' },
-        { name: "Mixir Radio", link: 'https://t.me/shekinahUNNlive?livestream' },
+        { name: "FaceBook", link: 'https://www.facebook.com/ShekinahAssemblyUnnCampusChurch', size: 'sm', icon: 'mdi-facebook', color: "blue-10" },
+        { name: "Telegram", link: 'https://t.me/shekinahUNNlive?livestream', size: 'xs', color: "blue-7", icon: "fas fa-paper-plane" },
+        { name: "Twitter", link: 'https://twitter.com/shekinahunn', size: 'sm', color: "blue", icon: "mdi-twitter" },
+        { name: "Instagram", link: 'https://www.instagram.com/shekinahunn', size: 'sm', color: "pink-7", icon: "mdi-instagram" },
+        { name: "Youtube", link: 'https://www.youtube.com/channel/UCbAnyTfkN1uSN4viPVx3crw', size: 'sm', color: "red-8", icon: "mdi-youtube" },
+        { name: "Mixir Radio", link: 'https://t.me/shekinahUNNlive?livestream', size: 'sm', color: "grey-9", icon: "mdi-radio" },
 
       ],
-      leftDrawerOpen,
-      text: ref(''),
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
+      text: ''
     };
   },
-});
+  computed: {
+    featuredPosts() {
+      return this.$store.getters['blog/FeaturedPosts']
+    },
+    Announcement() {
+      return this.$store.getters['blog/Announcement']
+    },
+  }
+};
 </script>

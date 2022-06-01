@@ -3,7 +3,8 @@ export default function () {
     landing: {
       books: [],
       teachings: [],
-      latest: {}
-    }
-  }
+      latest: {},
+    },
+    allTeachings: [],
+  };
 }

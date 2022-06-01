@@ -8,12 +8,13 @@
       </q-card-section>
       <q-card-section class="q-pa-lg">
         <div class="row">
-          <div class="col-12 col-md-3 col-sm-6 q-pa-md" v-for="i in 6" :key="i">
+          <div class="col-12 col-md-3 col-sm-6 q-pa-md" v-for="b, i in Books.data" :key="i">
             <div class="flex flex-center">
-              <q-card class="my-card square" :style="`background: url('${teaching.image}')`" flat>
+              <q-card class="my-card square" :style="`background: url('${baseUrl}${b.images[0]}'); background-size: contain;
+              background-position: center;`" flat>
                 <q-card-section class="flex ebook-title">
                   <div class="fs-12 text-center text-capitalize text-weight-bold text-white ls-06 title-text">{{
-                      teaching.title
+                      b.book_name
                   }}
                   </div>
                 </q-card-section>
@@ -25,7 +26,8 @@
       <q-separator spaced inset dark />
       <q-card-section>
         <div class="flex flex-center">
-          <q-pagination v-model="current" color="black" :max="10" :max-pages="6" direction-links boundary-numbers />
+          <q-pagination v-model="current_page" color="black" :max="pagination.last_page" :max-pages="6" direction-links
+            boundary-numbers />
 
         </div>
 
@@ -37,15 +39,66 @@
 <script>
 export default {
   // name: 'PageName',
+  preFetch({ store, currentRoute }) {
+    return store.dispatch('book/fetchBooks')
+  },
   data() {
     return {
+      baseUrl: process.env.VUE_APP_API_BASE,
       current: 4,
+      allBooks: [],
       teaching: {
         image: 'https://www.livingwordmedia.org/old/img/album-cover/e-book.png',
         title: 'CHARIS CAMPMEETING 2022 – THE MANDATE (AS WE GO)',
         slug: 'helloworld'
+      },
+      pagination: {}
+    }
+  },
+  computed: {
+    Books() {
+      return this.$store.getters['book/Books']
+
+    },
+    current_page: {
+      set(value) {
+        this.pagination.current_page = value
+      },
+      get() {
+        return this.pagination.current_page
       }
     }
-  }
+  },
+  watch: {
+    'pagination.current_page': function (page, oldPage) {
+      // handler(page, oldPage) {
+      if (oldPage !== null) {
+        this.loading = true;
+        this.$store.dispatch('book/fetchBooks', page).then(() => {
+          window.scrollTo({
+            top: 100,
+            left: 100,
+            behavior: 'smooth'
+          });
+        })
+      }
+      // this.current_page = newVal.meta.current_page
+    }
+  },
+  mounted() {
+    // console.log(this.Books)
+    // this.current_page = this.Teachings.meta.current_page
+    this.Books.data.length > 0
+      ? (this.allBooks = this.Books.data)
+      : console.log('Books ', 'empty')
+    this.pagination.current_page = this.Books.meta.current_page
+    this.pagination.last_page = this.Books.meta.total_pages
+  },
+  methods: {
+    formatDateString(d) {
+      const fd = new Date(d);
+      return date.formatDate(fd, "MMM D, YYYY");
+    }
+  },
 }
 </script>

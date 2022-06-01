@@ -1,4 +1,4 @@
-import { blogApi } from 'boot/blogApi'
+import { blogApi } from "boot/blogApi";
 // import axios from 'axios'
 /*
 export function someAction (context) {
@@ -9,8 +9,7 @@ export async function fetchStickyPost({ commit }) {
   try {
     commit("setLoadingStickyPost");
     // console.log('url', process.env.BLOG_API)
-    await blogApi.get(`/posts?sticky=require&number=1`).then(response => {
-
+    await blogApi.get(`/posts?sticky=require&number=1`).then((response) => {
       commit("setStickyPost", response.data);
       commit("setLoadingStickyPost");
 
@@ -27,8 +26,7 @@ export async function fetchFeaturedPosts({ commit }) {
   try {
     commit("setLoadingFeaturedPosts");
     // console.log('url', process.env.BLOG_API)
-    await blogApi.get(`/posts?number=4`).then(response => {
-
+    await blogApi.get(`/posts?number=10`).then((response) => {
       commit("setFeaturedPosts", response.data);
       commit("setLoadingFeaturedPosts");
 
@@ -45,11 +43,11 @@ export async function fetchPost({ commit, dispatch }, slug) {
   try {
     commit("setLoadingPost");
     // console.log('url', process.env.BLOG_API)
-    await blogApi.get(`/posts/slug:${slug}`).then(response => {
-      console.log(response.data)
+    await blogApi.get(`/posts/slug:${slug}`).then((response) => {
+      console.log(response.data);
       commit("setPost", response.data);
       commit("setLoadingPost");
-      dispatch("fetchRelatedPost")
+      dispatch("fetchRelatedPost");
       // console.log(response.data)
     });
   } catch (error) {
@@ -63,7 +61,7 @@ export async function fetchRelatedPost({ commit }) {
   try {
     commit("setLoadingFeaturedPosts");
     // console.log('url', process.env.BLOG_API)
-    await blogApi.get(`/posts?number=4`).then(response => {
+    await blogApi.get(`/posts?number=4`).then((response) => {
       commit("setFeaturedPosts", response.data);
       commit("setLoadingFeaturedPosts");
 
@@ -78,27 +76,23 @@ export async function fetchRelatedPost({ commit }) {
 export async function fetchCategories({ commit }) {
   try {
     commit("setLoadingCategories");
-    await blogApi.get(`/categories`).then(response => {
+    await blogApi.get(`/categories`).then((response) => {
       commit("setCategories", response.data.categories);
       commit("setLoadingCategories");
 
       // console.log(response.data)
     });
   } catch (error) {
-
     console.log(error);
   } finally {
     commit("setLoadingCategories");
   }
 }
 
-export async function fetchPostsByCategories(
-  { commit },
-  slug
-) {
+export async function fetchPostsByCategories({ commit }, slug) {
   try {
     commit("setLoadingPostsByCategories");
-    await blogApi.get(`/posts?category=${slug}`).then(response => {
+    await blogApi.get(`/posts?category=${slug}`).then((response) => {
       commit("setPostsByCategories", response.data);
       commit("setLoadingPostsByCategories");
 
@@ -111,15 +105,13 @@ export async function fetchPostsByCategories(
   }
 }
 
-export async function fetchAnnouncement(
-  { commit }
-) {
+export async function fetchAnnouncement({ commit }) {
   try {
     commit("setLoadingAnnouncement");
-    await blogApi.get(`/posts?category=announcement`).then(response => {
+    await blogApi.get(`/posts?category=announcement`).then((response) => {
       commit("setAnnouncement", response.data.posts[0]);
       commit("setLoadingAnnouncement");
-      console.log(response.data)
+      console.log(response.data);
       // console.log(response.data)
     });
   } catch (error) {
