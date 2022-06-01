@@ -117,9 +117,6 @@ export default {
 
       this.selected_video = u.split('v=')[1]
       const el = document.getElementById('frame')
-      this.$smoothScroll({
-        scrollTo: el, // scrollTo is also allowed to be number
-      })
       // window.scrollTo(0, 0);
     }
   },

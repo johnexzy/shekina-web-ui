@@ -1,5 +1,6 @@
 <template>
   <router-view />
+  <q-ajax-bar position="top" size="10px" />
 </template>
 <script>
 import { defineComponent } from "vue";
