@@ -103,6 +103,11 @@
           </q-card-section>
         </div>
       </div>
+      <AudioPlayer :option="{
+        src: landing.teachings[0].tracks[0].file_url,
+        title: landing.teachings[0].teaching_title,
+        // coverImage: base + '/' + landing.teachings[0].images[0],
+      }" />
     </q-card>
   </q-page>
 </template>

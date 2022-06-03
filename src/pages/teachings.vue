@@ -8,7 +8,9 @@
       </q-card-section>
       <q-card-section class="q-pa-lg">
         <div class="row">
-          <div class="col-12 col-md-6 col-sm-6 q-pa-md" v-for="t, i in Teachings.data" :key="i">
+          <router-link class="col-12 col-md-6 col-sm-6 q-pa-md text-decoration-none" v-for="t, i in Teachings.data"
+            :key="i" :to="{ name: 'teaching', params: { slug: t.short_url } }">
+            <!-- <div  @click="navigate" @keypress.enter="navigate"> -->
             <div class="fit row inline justify-start items-stretch content-start cursor-pointer">
 
               <q-img :src="baseUrl + '' + t.images[0]" class="square q-mr-md" spinner-color="primary"
@@ -17,7 +19,8 @@
                 {{ t.teaching_title }}
               </div>
             </div>
-          </div>
+            <!-- </div> -->
+          </router-link>
         </div>
       </q-card-section>
       <q-separator spaced inset dark />
