@@ -119,8 +119,8 @@
             </q-card-section>
             <q-card-section class="q-pa-lg text-center">
               <div class="fb-page" data-href="https://www.facebook.com/ShekinahAssemblyUnnCampusChurch"
-                data-tabs="timeline" data-width="" data-height="" data-small-header="true"
-                data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true">
+                data-tabs="timeline" data-width="" data-height="" data-small-header="false"
+                data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                 <blockquote cite="https://www.facebook.com/ShekinahAssemblyUnnCampusChurch"
                   class="fb-xfbml-parse-ignore"><a
                     href="https://www.facebook.com/ShekinahAssemblyUnnCampusChurch">Shekinah Assembly Unn, Campus
