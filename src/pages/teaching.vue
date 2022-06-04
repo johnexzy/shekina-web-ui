@@ -123,8 +123,8 @@ export default {
       <div v-if="player.src">
         <AudioPlayer :option="player" ref="mplayer" />
       </div>
-      <q-card-section class="q-pa-md text-center q-ma-md excerpt" style="border-radius: 5px">
-        <div class="col-12 col-md-12 col-sm-12 q-pa-md">
+      <q-card-section class="q-pa-md q-ma-md excerpt" style="border-radius: 5px">
+        <div class="col-12 col-md-12 text-center  col-sm-12 q-pa-sm">
           <h4 class="tt text-weight-bold text-capitalize">Excerpts from "{{ Teaching.teaching_title }}"</h4>
           <!-- <span class="liner"></span> -->
         </div>
