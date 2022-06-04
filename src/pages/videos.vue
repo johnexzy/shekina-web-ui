@@ -45,6 +45,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { createMetaMixin } from "quasar"
 export default {
   // name: 'PageName',
   preFetch({ store }) {
@@ -60,6 +61,28 @@ export default {
       }
     }
   },
+  mixins: [
+    createMetaMixin(function () {
+      // "this" here refers to your component
+      return {
+        // assuming `this.myTitle` exists in your mixed in component
+        title: 'Videos - Shekinah UNN branch',
+        meta: {
+          description: { name: 'description', content: 'Gods words tought in accuracy' },
+          keywords: { name: 'keywords', content: 'Local church, Teachings' },
+          equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
+          // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
+          ogTitle: {
+            property: 'og:title',
+            // optional; similar to titleTemplate, but allows templating with other meta properties
+            template(ogTitle) {
+              return `${ogTitle} - My Website`
+            }
+          }
+        },
+      }
+    })
+  ],
   computed: {
     Videos() {
       return this.$store.getters['video/Videos']

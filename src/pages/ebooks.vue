@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { createMetaMixin } from "quasar"
 export default {
   // name: 'PageName',
   preFetch({ store, currentRoute }) {
@@ -56,6 +57,28 @@ export default {
       pagination: {}
     }
   },
+  mixins: [
+    createMetaMixin(function () {
+      // "this" here refers to your component
+      return {
+        // assuming `this.myTitle` exists in your mixed in component
+        title: 'E-books - Shekinah UNN branch',
+        meta: {
+          description: { name: 'description', content: 'Gods words tought in accuracy' },
+          keywords: { name: 'keywords', content: 'Local church, Books' },
+          equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
+          // note: for Open Graph type metadata you will need to use SSR, to ensure page is rendered by the server
+          ogTitle: {
+            property: 'og:title',
+            // optional; similar to titleTemplate, but allows templating with other meta properties
+            template(ogTitle) {
+              return `${ogTitle} - My Website`
+            }
+          }
+        },
+      }
+    })
+  ],
   computed: {
     Books() {
       return this.$store.getters['book/Books']
