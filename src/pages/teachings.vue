@@ -15,8 +15,9 @@
 
               <q-img :src="baseUrl + '' + t.images[0]" class="square q-mr-md" spinner-color="primary"
                 spinner-size="82px" />
-              <div class="col self-start wrap q-ml-sm text-weight-bold text-black-50 teaching_title">
-                {{ t.teaching_title }}
+              <div class="col self-center justify-between wrap q-ml-sm teaching_title">
+                <p class="text-weight-bold text-black-50 q-mb-md">{{ t.teaching_title }}</p>
+                <p class=" text-italic text-grey-8">{{ truncate(t.short_details, 60) }}</p>
               </div>
             </div>
             <!-- </div> -->
@@ -100,6 +101,9 @@ export default {
     formatDateString(d) {
       const fd = new Date(d);
       return date.formatDate(fd, "MMM D, YYYY");
+    },
+    truncate(t, n) {
+      return t.slice(0, n) + "..."
     }
   },
 }

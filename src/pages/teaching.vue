@@ -82,6 +82,13 @@ export default {
         <h4 class="tt text-weight-bold text-capitalize">{{ Teaching.teaching_title }}</h4>
         <span class="liner"></span>
       </q-card-section>
+      <q-card-section class="q-pa-md text-center q-ma-md excerpt" style="border-radius: 5px">
+        <div class="col-12 col-md-12 col-sm-12 q-pa-md">
+          <h4 class="tt text-weight-bold text-capitalize">Excerpts from "{{ Teaching.teaching_title }}"</h4>
+          <!-- <span class="liner"></span> -->
+        </div>
+        <h6 class=" text-weight-light text-monospace">{{ Teaching.short_details }}</h6>
+      </q-card-section>
       <q-card-section class="q-pa-lg">
         <!-- <div class="row"> -->
 
@@ -125,8 +132,8 @@ export default {
       <q-card-section class="q-pa-lg">
         <div class="row">
 
-          <div class="col-12 col-md-12 col-sm-12 q-pa-md">
-            <h4 class="tt text-weight-bold text-capitalize">Excerpts from "{{ Teaching.teaching_title }}"</h4>
+          <div class="col-12 col-md-12 col-sm-12 q-pa-md  text-center">
+            <h4 class="tt text-weight-bold text-capitalize">Readings</h4>
             <span class="liner"></span>
             <div class="row" v-html="Teaching.teaching_details">
 
@@ -138,3 +145,14 @@ export default {
   </q-page>
 </template>
 
+<style lang="scss">
+.excerpt {
+  background: radial-gradient(circle,
+      rgb(194, 194, 2),
+      #be5505dd);
+}
+
+.text-monospace {
+  font-family: monospace !important;
+}
+</style>
