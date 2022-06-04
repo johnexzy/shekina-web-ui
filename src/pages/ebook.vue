@@ -1,0 +1,67 @@
+<script>
+export default {
+  // name: 'PageName',
+  preFetch({ store, currentRoute }) {
+    return store.dispatch('book/fetchBookByUrl', currentRoute.params.slug)
+  },
+  data() {
+    return {
+      baseUrl: process.env.VUE_APP_API_BASE,
+    }
+  },
+  computed: {
+    Book() {
+      return this.$store.getters['book/getBook']
+
+    },
+  },
+  methods: {
+    formatDateString(d) {
+      const fd = new Date(d);
+      return date.formatDate(fd, "MMM D, YYYY");
+    },
+  },
+}
+</script>
+
+<template>
+  <q-page class="container">
+    <q-card class="card w-100" flat square>
+
+      <q-card-section class="q-pa-lg">
+        <h4 class="tt text-weight-bold text-capitalize">{{ Book.book_name }}</h4>
+        <span class="liner"></span>
+      </q-card-section>
+      <q-card-section class="q-pa-lg">
+        <div class="row">
+
+          <div class="col-12 col-md-12 col-sm-12 q-pa-md">
+            <div class="fit row inline justify-center items-stretch content-start cursor-pointer">
+
+              <q-img :src="baseUrl + Book.images[0]" ref="imgs" class="square q-mr-md" spinner-color="primary"
+                spinner-size="82px" />
+            </div>
+            <div class="row justify-center">
+              <q-btn color="orange" icon="download" flat label="Download Free Ebook" :href="Book.file_url" />
+            </div>
+
+          </div>
+        </div>
+      </q-card-section>
+      <q-separator spaced inset dark />
+      <q-card-section class="q-pa-lg">
+        <div class="row">
+
+          <div class="col-12 col-md-12 col-sm-12 q-pa-md">
+            <h4 class="tt text-weight-bold text-capitalize">Excerpts from "{{ Book.book_name }}"</h4>
+            <span class="liner"></span>
+            <div class="row" v-html="Book.book_details">
+
+            </div>
+          </div>
+        </div>
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template>
+

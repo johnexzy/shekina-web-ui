@@ -61,6 +61,7 @@ export default {
         mplayer.isPlaying ? this.pause() : this.play();
         return
       }
+
       this.player.src = src
       this.play();
       this.activeTeaching = i
@@ -82,43 +83,57 @@ export default {
         <span class="liner"></span>
       </q-card-section>
       <q-card-section class="q-pa-lg">
-        <div class="row">
+        <!-- <div class="row"> -->
 
-          <div class="col-12 col-md-12 col-sm-12 q-pa-md">
-            <div class="fit row inline justify-start items-stretch content-start cursor-pointer">
+        <!-- <div class="col-12 col-md-12 col-sm-12 q-pa-md"> -->
+        <div class="row justify-start content-start cursor-pointer">
 
-              <q-img :src="baseUrl + '' + Teaching.images[0]" ref="imgs" class="square q-mr-md" spinner-color="primary"
-                spinner-size="82px" />
-              <div class="col self-start wrap q-ml-sm text-weight-bold text-black-50 teaching_title">
-                <div>
-                  <q-list bordered separator>
-                    <q-item v-for="t, i in Teaching.tracks" :key="i">
-                      <q-item-section avatar>
-                        <q-btn v-if="isPlaying(i)" color="red" @click="playAudio(t.src, i)" flat dense
-                          icon="mdi-pause" />
-                        <q-btn v-else color="primary" @click="playAudio(t.src, i)" flat dense icon="mdi-play" />
-                      </q-item-section>
-                      <q-item-section>Track {{ i + 1 }}</q-item-section>
-                      <q-item-section side>
-                        <a style="text-decoration: none" :href="t.src"
-                          download="Teaching.title + '-by' + Teaching.teacher + '-Track' + i">
-                          <q-btn color="orange" flat dense icon="download" />
-                        </a>
+          <div class="col-12 col-lg-3 col-md-3 q-py-lg">
+            <q-img :src="baseUrl + Teaching.images[0]" ref="imgs" class="square q-mr-md" spinner-color="primary"
+              spinner-size="82px" />
+          </div>
+          <div
+            class="col-12 col-lg-9 col-md-9 q-py-lg self-start no-wrap q-ml-sm text-weight-bold text-black-50 teaching_title">
+            <!-- <div class="row w-100"> -->
+            <q-list bordered separator>
+              <q-item v-for="t, i in Teaching.tracks" :key="i">
+                <q-item-section avatar>
+                  <q-btn v-if="isPlaying(i)" color="red" @click="playAudio(t.src, i)" flat dense icon="mdi-pause" />
+                  <q-btn v-else color="primary" @click="playAudio(t.src, i)" flat dense icon="mdi-play" />
+                </q-item-section>
+                <q-item-section>Track {{ i + 1 }}</q-item-section>
+                <q-item-section side>
+                  <a style="text-decoration: none" :href="t.src"
+                    download="Teaching.title + '-by' + Teaching.teacher + '-Track' + i">
+                    <q-btn color="orange" flat dense icon="download" />
+                  </a>
 
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </div>
-              </div>
-            </div>
-
+                </q-item-section>
+              </q-item>
+            </q-list>
+            <!-- </div> -->
           </div>
         </div>
+
+        <!-- </div> -->
+        <!-- </div> -->
       </q-card-section>
       <q-separator spaced inset dark />
       <div v-if="player.src">
         <AudioPlayer :option="player" ref="mplayer" />
       </div>
+      <q-card-section class="q-pa-lg">
+        <div class="row">
+
+          <div class="col-12 col-md-12 col-sm-12 q-pa-md">
+            <h4 class="tt text-weight-bold text-capitalize">Excerpts from "{{ Teaching.teaching_title }}"</h4>
+            <span class="liner"></span>
+            <div class="row" v-html="Teaching.teaching_details">
+
+            </div>
+          </div>
+        </div>
+      </q-card-section>
     </q-card>
   </q-page>
 </template>

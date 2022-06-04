@@ -58,10 +58,13 @@
       </q-toolbar>
       <q-toolbar spellcheck inset class="nav-menu">
         <!-- <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" /> -->
+        <router-link to="/" custom v-slot="{ navigate }">
+          <q-toolbar-title @click="navigate" @keypress.enter="navigate"
+            :style="$q.screen.gt.sm ? '' : 'text-align: center;'">
+            <img src="~assets/logo.png" title="Bringing sons to glory" />
+          </q-toolbar-title>
+        </router-link>
 
-        <q-toolbar-title :style="$q.screen.gt.sm ? '' : 'text-align: center;'">
-          <img src="~assets/logo.png" title="Bringing sons to glory" />
-        </q-toolbar-title>
         <div class="q-pa-lg gt-sm">
           <router-link to="/" class="text-decoration-none">Home</router-link>
         </div>
@@ -140,12 +143,15 @@
 import { defineComponent, ref } from "vue";
 
 export default {
-  preFetch({ store }) {
-    return (async () => {
-      await store.dispatch("blog/fetchFeaturedPosts")
-      await store.dispatch("blog/fetchCategories")
-      await store.dispatch("blog/fetchAnnouncement")
-    })()
+  async preFetch({ store }) {
+    store.dispatch("blog/fetchFeaturedPosts")
+    store.dispatch("blog/fetchCategories")
+    store.dispatch("blog/fetchAnnouncement")
+    // return (async () => {
+    //   await store.dispatch("blog/fetchFeaturedPosts")
+    //   await store.dispatch("blog/fetchCategories")
+    //   await store.dispatch("blog/fetchAnnouncement")
+    // })()
 
   },
   name: "MainLayout",

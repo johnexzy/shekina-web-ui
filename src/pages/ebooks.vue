@@ -8,7 +8,8 @@
       </q-card-section>
       <q-card-section class="q-pa-lg">
         <div class="row">
-          <div class="col-12 col-md-3 col-sm-6 q-pa-md" v-for="b, i in Books.data" :key="i">
+          <div class="col-12 col-md-3 col-sm-6 q-pa-md cursor-pointer" v-for="b, i in Books.data" :key="i"
+            @click="$router.push({ name: 'ebook', params: { slug: b.short_url } })">
             <div class="flex flex-center">
               <q-card class="my-card square" :style="`background: url('${baseUrl}${b.images[0]}'); background-size: contain;
               background-position: center;`" flat>

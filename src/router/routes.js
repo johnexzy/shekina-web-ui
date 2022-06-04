@@ -11,7 +11,16 @@ const routes = [
         component: () => import("pages/teaching.vue"),
       },
       { path: "videos", component: () => import("src/pages/videos.vue") },
-      { path: "ebooks", component: () => import("pages/ebooks.vue") },
+      {
+        path: "ebooks",
+        name: "ebooks",
+        component: () => import("pages/ebooks.vue"),
+      },
+      {
+        path: "ebook/:slug",
+        name: "ebook",
+        component: () => import("pages/ebook.vue"),
+      },
     ],
   },
 

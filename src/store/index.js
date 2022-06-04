@@ -6,6 +6,7 @@ import blog from "./blog";
 import teaching from "./teaching";
 import book from "./book";
 import video from "./video";
+import player from "./player";
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -20,6 +21,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       landing,
       blog,
+      player,
       teaching,
       book,
       video,

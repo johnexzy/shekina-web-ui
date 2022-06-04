@@ -10,7 +10,8 @@
 
           <q-card-section>
             <carousel ref="latestUpload" :itemsToShow="itemsToShow" :wrapAround="true" :autoplay="2000">
-              <slide v-for="t, i in landing.teachings" :key="i" class="carousel__item">
+              <slide v-for="t, i in landing.teachings" :key="i" class="carousel__item cursor-pointer"
+                @click="$router.push({ name: 'teaching', params: { slug: t.short_url } })">
                 <img :src="base + '/' + t.images[0]" alt="">
               </slide>
 
@@ -60,7 +61,8 @@
         </div>
         <div class="list_teachings">
           <div class="row">
-            <div class="col-12 col-lg-3 col-md-6 col-sm-6" v-for="t, i in teachings" :key="i">
+            <div class="col-12 col-lg-3 col-md-6 col-sm-6 cursor-pointer" v-for="t, i in teachings" :key="i"
+              @click="$router.push({ name: 'teaching', params: { slug: t.short_url } })">
               <div class="teaching_card q-pa-lg">
                 <q-card class="my-card animated slideInUp" flat>
                   <img :src="base + '/' + t.images[0]">
@@ -86,7 +88,9 @@
 
           <q-card-section>
             <carousel ref="latestBooks" :itemsToShow="itemsToShow" :wrapAround="true" :autoplay="2000">
-              <slide v-for="t, i in landing.books" :key="i" class="carousel__item">
+              <slide v-for="t, i in landing.books" :key="i"
+                @click="$router.push({ name: 'ebook', params: { slug: t.short_url } })"
+                class="carousel__item cursor-pointer">
                 <img :src="base + '/' + t.images[0]" alt="">
               </slide>
 
@@ -98,16 +102,11 @@
           </q-card-section>
           <q-card-section>
             <div class="flex flex-center">
-              <q-btn color="black" to="/ebooks" label="View All Ebooks" flat @click="onClick" />
+              <q-btn color="black" to="/ebooks" label="View All Ebooks" flat />
             </div>
           </q-card-section>
         </div>
       </div>
-      <AudioPlayer :option="{
-        src: landing.teachings[0].tracks[0].file_url,
-        title: landing.teachings[0].teaching_title,
-        // coverImage: base + '/' + landing.teachings[0].images[0],
-      }" />
     </q-card>
   </q-page>
 </template>
