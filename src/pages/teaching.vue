@@ -136,15 +136,3 @@ export default {
     </q-card>
   </q-page>
 </template>
-
-<style lang="scss">
-.excerpt {
-  background: radial-gradient(circle,
-      rgb(194, 194, 2),
-      #be5505dd);
-}
-
-.text-monospace {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-}
-</style>

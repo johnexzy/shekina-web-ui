@@ -38,7 +38,7 @@ export default {
           <div class="col-12 col-md-12 col-sm-12 q-pa-md">
             <div class="fit row inline justify-center items-stretch content-start cursor-pointer">
 
-              <q-img :src="baseUrl + Book.images[0]" ref="imgs" class="square q-mr-md" spinner-color="primary"
+              <q-img :src="baseUrl + Book.images[0]" ref="imgs" class="square q-mr-md border" spinner-color="primary"
                 spinner-size="82px" />
             </div>
             <div class="row justify-center">
@@ -49,17 +49,16 @@ export default {
         </div>
       </q-card-section>
       <q-separator spaced inset dark />
-      <q-card-section class="q-pa-lg">
-        <div class="row">
 
-          <div class="col-12 col-md-12 col-sm-12 q-pa-md">
-            <h4 class="tt text-weight-bold text-capitalize">Excerpts from "{{ Book.book_name }}"</h4>
-            <span class="liner"></span>
-            <div class="row" v-html="Book.book_details">
-
-            </div>
-          </div>
+      <q-card-section class="q-pa-md q-ma-md excerpt" style="border-radius: 5px">
+        <div class="col-12 col-md-12 text-center  col-sm-12 q-pa-sm">
+          <h4 class="tt text-weight-bold text-capitalize">About "{{ Book.book_name }}"</h4>
+          <!-- <span class="liner"></span> -->
         </div>
+        <div class="row" v-html="Book.book_details">
+
+        </div>
+        <!-- <h6 class=" text-weight-light text-monospace">{{ Teaching.short_details }}</h6> -->
       </q-card-section>
     </q-card>
   </q-page>
