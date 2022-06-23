@@ -7,6 +7,7 @@ import teaching from "./teaching";
 import book from "./book";
 import video from "./video";
 import player from "./player";
+import search from "./search";
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -25,6 +26,7 @@ export default store(function (/* { ssrContext } */) {
       teaching,
       book,
       video,
+      search,
     },
 
     // enable strict mode (adds overhead!)

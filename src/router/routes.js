@@ -21,6 +21,17 @@ const routes = [
         name: "ebook",
         component: () => import("pages/ebook.vue"),
       },
+      //blog
+      {
+        path: "/blog",
+        name: "blog",
+        component: () => import("src/pages/Blog/Landing.vue"),
+      },
+      {
+        path: "/blog/:blog",
+        name: "blogs.blog",
+        component: () => import("src/pages/Blog/Blog.vue"),
+      },
     ],
   },
 

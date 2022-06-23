@@ -9,7 +9,7 @@
           </q-card-section>
 
           <q-card-section>
-            <carousel ref="latestUpload" :itemsToShow="itemsToShow" :wrapAround="true" :autoplay="2000">
+            <carousel ref="latestUpload" :itemsToShow="itemsToShow" :wrapAround="true" :autoplay="5000">
               <slide v-for="t, i in landing.teachings" :key="i" class="carousel__item cursor-pointer"
                 @click="$router.push({ name: 'teaching', params: { slug: t.short_url } })">
                 <img :src="base + '/' + t.images[0]" alt="">
@@ -87,7 +87,7 @@
           </q-card-section>
 
           <q-card-section>
-            <carousel ref="latestBooks" :itemsToShow="itemsToShow" :wrapAround="true" :autoplay="2000">
+            <carousel ref="latestBooks" :itemsToShow="itemsToShow" :wrapAround="true" :autoplay="4000">
               <slide v-for="t, i in landing.books" :key="i"
                 @click="$router.push({ name: 'ebook', params: { slug: t.short_url } })"
                 class="carousel__item cursor-pointer">
@@ -196,9 +196,9 @@ export default defineComponent({
 
     itemsToShow() {
       if (this.$q.screen.gt.md) {
-        return (this.innerWidth * 3.5) / 1700
+        return (this.innerWidth * 3) / 1700
       }
-      return (this.innerWidth * 5.5) / 1700
+      return (this.innerWidth * 5) / 1700
     },
     AllTeachings() {
       return this.teachings
